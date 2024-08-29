@@ -68,6 +68,16 @@
                     android:layout_margin="@dimen/paddingmin"
                     android:text="@string/buy"/>
 
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="chip@gma.com"
+                    app:closeIconEnabled="true"
+                    android:checkable="true"/>
+
+
 
             </LinearLayout>
 
@@ -78,6 +88,7 @@
             android:id="@+id/btnGroup"
             android:layout_width="match_parent"
             android:gravity="center"
+            app:singleSelection="true"
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/btnRed"
@@ -86,16 +97,45 @@
                 android:text="Red"
                 style="?attr/materialButtonOutlinedStyle"/>
             <Button
+                android:id="@+id/btnBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Black"
                 style="?attr/materialButtonOutlinedStyle"/>
             <Button
+                android:id="@+id/btnBlue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Blue"
                 style="?attr/materialButtonOutlinedStyle"/>
         </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUrl"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/sw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hide"
+            />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:valueFrom="0"
+            android:valueTo="10"
+            android:stepSize="1.0"
+            android:text="Hide"
+            />
+
 
     </LinearLayout>
 

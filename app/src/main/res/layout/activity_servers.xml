@@ -8,7 +8,8 @@
     android:fitsSystemWindows="true"
     tools:context=".ServersActivity">
 
-    <include layout="@layout/content_scrolling" />
+    <include android:id="@+id/userscontent" layout="@layout/contentusers" />
+    <include android:visibility="gone" android:id="@+id/content" layout="@layout/content_scrolling" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
