@@ -1,6 +1,7 @@
 package com.zigmab.first
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
@@ -10,15 +11,19 @@ import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import com.zigmab.first.Adapters.UserAdapter
 import com.zigmab.first.Entidades.User
+import com.zigmab.first.Intefaces.OnClickListener
 import com.zigmab.first.databinding.ActivityServersBinding
 
-class ServersActivity : AppCompatActivity() {
+class ServersActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var binding: ActivityServersBinding
     private lateinit var context: Context
@@ -40,20 +45,58 @@ class ServersActivity : AppCompatActivity() {
 
         context = this
 
-        ContentScrollingClass()
-
-
+        //ContentScrollingClass()
         ShowUsers()
 
+        SharedPreferencesLear()
 
             
     }
+
+    private fun SharedPreferencesLear() {
+         val preferences = getPreferences( Context.MODE_PRIVATE )
+
+        val isFirst = preferences.getBoolean( getString(R.string.first) , true )
+
+        if (  isFirst ) {
+
+            val dialogView = layoutInflater.inflate( R.layout.dialog_personalizado, null)
+
+            MaterialAlertDialogBuilder(context)
+                .setTitle( "Titulo" )
+                .setView( dialogView )
+                .setCancelable( false )
+                .setPositiveButton( "Aceptar") { _, i ->
+
+                    val username = dialogView.findViewById<TextInputEditText>(R.id.txtUsername).text.toString()
+
+                    with( preferences.edit() ){
+                        putBoolean(getString(R.string.first), false)
+                        putString(getString(R.string.username), username )
+                            .apply()
+                    }
+
+                    //val putBoolean =  preferences.edit().putBoolean(getString(R.string.first), false).commit()
+
+
+                }
+                .show()
+
+        }
+
+        Snackbar.make(binding.root, isFirst.toString() , Snackbar.LENGTH_SHORT)
+            .setAnchorView(binding.btnAdd)
+            .show()
+
+
+    }
+
     private fun ShowUsers() {
 
         var userAdapter: UserAdapter
         var linearLayoutManager: RecyclerView.LayoutManager
 
-        userAdapter = UserAdapter( GetUsers() )
+        userAdapter = UserAdapter( GetUsers(), this )
         linearLayoutManager =LinearLayoutManager(context)
 
         GetUsers()
@@ -63,6 +106,21 @@ class ServersActivity : AppCompatActivity() {
             layoutManager = linearLayoutManager
             adapter = userAdapter
         }
+
+        val swipeHelper = ItemTouchHelper( object : ItemTouchHelper.SimpleCallback( 0 , ItemTouchHelper.LEFT ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean = false
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                userAdapter.remove( viewHolder.adapterPosition )
+            }
+        })
+
+        swipeHelper.attachToRecyclerView( binding.userscontent.recycler)
+
     }
 
     private fun GetUsers(): MutableList<User> {
@@ -133,6 +191,7 @@ class ServersActivity : AppCompatActivity() {
                 .with( context )
                 .load("https://www.educaciontrespuntocero.com/wp-content/uploads/2020/04/mejores-bancos-de-imagenes-gratis.jpg")
                 .centerCrop()
+                .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.content.imgCard!!)
         }
@@ -147,4 +206,11 @@ class ServersActivity : AppCompatActivity() {
 
         }
     }
+
+    override fun OnClick(user: User) {
+        Snackbar.make(binding.root, user.Nombre, Snackbar.LENGTH_SHORT)
+            .setAnchorView(binding.btnAdd)
+            .show()
+    }
+
 }

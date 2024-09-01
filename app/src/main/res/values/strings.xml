@@ -94,4 +94,7 @@
     <string name="Tittle">Titulo</string>
     <string name="buy">Comprar</string>
     <string name="Descrpition">Descripción del contenido dentro del CardView</string>
+    <string name="first">Primera vez</string>
+    <string name="RequiredUsername">Campo de nombre obligatorio</string>
+    <string name="username">Nombre de usuario</string>
 </resources>
