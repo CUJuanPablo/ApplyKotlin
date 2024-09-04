@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/img_card">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:button="@drawable/state_checkbox_favorite"
+                    android:buttonTint="@color/red"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/lblName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/card_tittle"
+                android:layout_margin="10dp"
+                android:text="Nombre"/>
+            <TextView
+                android:id="@+id/lblDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripcion"
+                android:layout_margin="10dp"
+                android:textSize="@dimen/card_text"/>
+        </LinearLayout>
+
+
+
+
+
+
+
+</com.google.android.material.card.MaterialCardView>

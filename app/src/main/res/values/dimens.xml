@@ -4,4 +4,7 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="card_img_size">88dp</dimen>
     <dimen name="paddingmin">8dp</dimen>
+    <dimen name="img_card">150dp</dimen>
+    <dimen name="card_tittle">22sp</dimen>
+    <dimen name="card_text">15sp</dimen>
 </resources>

@@ -1,7 +1,6 @@
-package com.zigmab.first
+package com.zigmab.first.Acivities
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
@@ -19,8 +18,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.zigmab.first.Adapters.UserAdapter
+import com.zigmab.first.Entidades.StoreEntity
 import com.zigmab.first.Entidades.User
 import com.zigmab.first.Intefaces.OnClickListener
+import com.zigmab.first.R
 import com.zigmab.first.databinding.ActivityServersBinding
 
 class ServersActivity : AppCompatActivity(), OnClickListener {
@@ -60,7 +61,7 @@ class ServersActivity : AppCompatActivity(), OnClickListener {
 
         if (  isFirst ) {
 
-            val dialogView = layoutInflater.inflate( R.layout.dialog_personalizado, null)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_personalizado, null)
 
             MaterialAlertDialogBuilder(context)
                 .setTitle( "Titulo" )
@@ -212,5 +213,7 @@ class ServersActivity : AppCompatActivity(), OnClickListener {
             .setAnchorView(binding.btnAdd)
             .show()
     }
+
+    override fun OnClickTienda(store: StoreEntity) {  }
 
 }

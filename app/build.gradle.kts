@@ -1,6 +1,10 @@
+//gradle app
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+//    alias(libs.plugins.android.application)
+//    alias(libs.plugins.jetbrains.kotlin.android)
+    //alias(libs.plugins.ksp) // Usas el alias definido para KSP
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
 }
 
@@ -52,5 +56,10 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
     //ksp("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation("androidx.room:room-runtime:2.6.1")
+//    ksp("androidx.room:room-compiler:2.5.0")
+    ksp("androidx.room:room-compiler:2.6.1")
+
 
 }

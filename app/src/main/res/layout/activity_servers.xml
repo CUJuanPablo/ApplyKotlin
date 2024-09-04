@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ServersActivity">
+    tools:context=".Acivities.ServersActivity">
 
     <include android:id="@+id/userscontent" layout="@layout/contentusers" />
     <include android:visibility="gone" android:id="@+id/content" layout="@layout/content_scrolling" />
