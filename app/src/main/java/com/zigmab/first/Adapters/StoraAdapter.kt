@@ -22,7 +22,14 @@ class StoraAdapter(
         val binding = ItemServerBinding.bind( view )
 
         fun setListener( store : StoreEntity ){
-            binding.root.setOnClickListener { listener.OnClickTienda( store )}
+            with( binding.root){
+                setOnClickListener { listener.OnClickTienda( store )}
+                setOnLongClickListener{
+                    listener.OnDeleteStore( store )
+                    true
+                }
+            }
+            binding.chFavorite.setOnClickListener{ listener.OnFavoriteStore( store ) }
         }
     }
 
@@ -39,6 +46,7 @@ class StoraAdapter(
         with( holder ){
             binding.lblName.text = store.NAME
             setListener( store )
+            binding.chFavorite.isChecked = store.IS_FAVORITE
         }
 
     }
@@ -53,5 +61,21 @@ class StoraAdapter(
     fun setStores(stores: MutableList<StoreEntity>) {
         this.stores = stores
         notifyDataSetChanged()
+    }
+
+    fun Update(item: StoreEntity?) {
+        val index = stores.indexOf( item )
+        if( index != - 1){
+            stores.set( index , item!!  )
+            notifyItemChanged( index )
+        }
+    }
+
+    fun Delete(item: StoreEntity?) {
+        val index = stores.indexOf( item )
+        if( index != - 1){
+            stores.removeAt( index )
+            notifyItemRemoved( index )
+        }
     }
 }

@@ -18,6 +18,7 @@
                     android:layout_height="match_parent"/>
 
                 <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/chFavorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"

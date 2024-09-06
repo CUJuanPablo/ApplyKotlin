@@ -97,4 +97,6 @@
     <string name="first">Primera vez</string>
     <string name="RequiredUsername">Campo de nombre obligatorio</string>
     <string name="username">Nombre de usuario</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -9,4 +9,8 @@ interface OnClickListener {
 
     fun OnClickTienda(store : StoreEntity)
 
+    fun OnFavoriteStore( store: StoreEntity)
+
+    fun OnDeleteStore( store: StoreEntity )
+
 }

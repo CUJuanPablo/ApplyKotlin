@@ -215,5 +215,11 @@ class ServersActivity : AppCompatActivity(), OnClickListener {
     }
 
     override fun OnClickTienda(store: StoreEntity) {  }
+    override fun OnFavoriteStore(store: StoreEntity) {
+//        TODO("Not yet implemented")
+    }
 
+    override fun OnDeleteStore(store: StoreEntity) {
+        TODO("Not yet implemented")
+    }
 }

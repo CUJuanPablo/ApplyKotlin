@@ -1,10 +1,8 @@
-package com.zigmab.first.Acivities
+package com.zigmab.first.Acivities.Stores
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import com.zigmab.first.Adapters.StoraAdapter
 import com.zigmab.first.DB.StoreAplication
@@ -28,6 +26,12 @@ class StoresActivity : AppCompatActivity(), OnClickListener {
         binding = ActivityStoresBinding.inflate( layoutInflater )
         setContentView( binding.root )
 
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        toolbar.setTitle( "Gestor de tiendas")
+
         binding.btnsave.setOnClickListener{
             val store = StoreEntity(
                 NAME = binding.txtnombre.text.toString().trim()
@@ -43,6 +47,26 @@ class StoresActivity : AppCompatActivity(), OnClickListener {
         }
 
         setUpRecyclerView()
+
+        binding.btnAddFloating.setOnClickListener{
+            launchFragment()
+        }
+
+    }
+
+    private fun launchFragment() {
+        val fragment = StoreFragment()
+
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+        fragmentTransaction.add( R.id.constainlayoutStores, fragment )
+        fragmentTransaction.addToBackStack( null )
+
+        fragmentTransaction.commit()
+
+
+
 
     }
 
@@ -79,5 +103,30 @@ class StoresActivity : AppCompatActivity(), OnClickListener {
 
     override fun OnClickTienda(store: StoreEntity) {
         TODO("Not yet implemented")
+    }
+
+    override fun OnFavoriteStore(store: StoreEntity) {
+        store.IS_FAVORITE = !store.IS_FAVORITE
+
+        val queue = LinkedBlockingQueue<StoreEntity>()
+
+        Thread{
+            StoreAplication.database.storeDao().UpdateStore( store )
+            queue.add( store )
+        }.start()
+
+
+
+    }
+
+    override fun OnDeleteStore(store: StoreEntity) {
+        val queue = LinkedBlockingQueue<StoreEntity>()
+
+        Thread{
+            StoreAplication.database.storeDao().Delete( store )
+            queue.add( store )
+        }.start()
+
+        madapter.Delete( queue.take() )
     }
 }
