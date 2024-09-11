@@ -54,11 +54,13 @@ class StoresActivity : AppCompatActivity(), OnClickListener {
 
     }
 
-    private fun launchFragment() {
+    private fun launchFragment( args: Bundle? = null ) {
         val fragment = StoreFragment()
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+
+        if( args != null ) fragment.arguments = args
 
         fragmentTransaction.add( R.id.constainlayoutStores, fragment )
         fragmentTransaction.addToBackStack( null )
@@ -102,7 +104,12 @@ class StoresActivity : AppCompatActivity(), OnClickListener {
     override fun OnClick(user: User) { }
 
     override fun OnClickTienda(store: StoreEntity) {
-        TODO("Not yet implemented")
+        val args = Bundle()
+
+        args.putLong("ID", store.ID )
+
+        launchFragment( args )
+
     }
 
     override fun OnFavoriteStore(store: StoreEntity) {

@@ -9,6 +9,7 @@
     tools:context=".Acivities.Stores.StoresActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:visibility="gone"
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +37,6 @@
 
 
         <EditText
-            android:visibility="gone"
             android:id="@+id/txtnombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +44,6 @@
             />
 
         <com.google.android.material.button.MaterialButton
-            android:visibility="gone"
             android:id="@+id/btnsave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
